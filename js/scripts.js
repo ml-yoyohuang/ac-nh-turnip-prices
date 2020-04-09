@@ -123,6 +123,14 @@ const getSellPrices = function () {
   })
 }
 
+function zhName(pattern_description) {
+ if (pattern_description === 'Decreasing') {return '持續下跌'} 
+ if (pattern_description === 'Fluctuating') {return '波動型'} 
+ if (pattern_description === 'Small spike') {return '四期型'} 
+ if (pattern_description === 'Large spike') {return '三期型'} 
+ if (pattern_description === 'All patterns') {return '合計'} 
+ return pattern_description
+}
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
@@ -130,11 +138,13 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   }
   let output_possibilities = "";
   for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
-    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+    var out_line = "<tr><td>" + zhName(poss.pattern_description) + "</td>"
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
+      var isReachMax = day.max === poss.weekMax;
+      var tdClass = isReachMax ? 'highlight' : '';
       if (day.min !== day.max) {
-        out_line += `<td>${day.min}..${day.max}</td>`;
+        out_line += `<td class="${tdClass}">${day.min}~${day.max}</td>`;
       } else {
         out_line += `<td class="one">${day.min}</td>`;
       }
