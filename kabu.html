@@ -246,18 +246,18 @@
       var val = parseInt($(this).val(), 10);
       var inputName = $(this).attr('id');
       if (val > 9) {
-        console.log(`send ${inputName} val${val}`)
-        gtag('event', inputName, {
-        'event_label': val,
-        'value': val
-      });
+        // console.log(`send ${inputName} val${val}`)
+          gtag('event', inputName, {
+          'event_label': val,
+          'value': val
+        });
       }
     })
     $('.track_change').on('change', function(){
       var val = $(this).val();
       var inputName = $(this).attr('id');
-      console.log(`send ${inputName} val${val}`)
-        gtag('event', inputName, {
+      // console.log(`send ${inputName} val${val}`)
+      gtag('event', inputName, {
         'event_label': val,
         'value': val
       });
