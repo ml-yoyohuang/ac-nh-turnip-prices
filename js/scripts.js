@@ -142,11 +142,11 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       var isReachMax = day.max === poss.weekMax;
-      var tdClass = isReachMax ? 'highlight' : '';
+      var tdClass = isReachMax ? 'highlight' : 'one';
       if (day.min !== day.max) {
         out_line += `<td class="${tdClass}">${day.min}~${day.max}</td>`;
       } else {
-        out_line += `<td class="one">${day.min}</td>`;
+        out_line += `<td class="${tdClass}">${day.min}</td>`;
       }
     }
     out_line += `<td class="one">${poss.weekGuaranteedMinimum}</td><td class="one">${poss.weekMax}</td></tr>`;
