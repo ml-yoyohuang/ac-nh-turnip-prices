@@ -43,6 +43,10 @@
     td.highlight{
       background-color: salmon;
     }
+    .wrapper-table{
+      max-width: 100%;
+      overflow-x: auto;
+    }
   </style>
 </head>
 
@@ -200,8 +204,8 @@
         <span>以下是你的可能走勢 (最低~最高)。 如果查無走勢，可能有數值錯誤囉 &#128531;. 下週繼續努力!!</span>
     </div>
 
-    <div class="section">
-      <table id="turnipTable" class="highlight  responsive-table">
+    <div class="section wrapper-table">
+      <table id="turnipTable" class="highlight">
         <thead>
           <tr>
             <th rowspan="2">走勢</th>
