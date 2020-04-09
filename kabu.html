@@ -29,6 +29,16 @@
 
     gtag('config', 'UA-162470902-1');
   </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-103936072-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-103936072-2');
+  </script>
+  
   <style>
     td.highlight{
       background-color: salmon;
@@ -59,7 +69,7 @@
         <div class="row">
           <div class="col s4">
             <div class="input-field">
-              <select id="previous_pattern">
+              <select id="previous_pattern" class="track_change">
                 <option value="-1" selected>(未知)</option>
                 <!-- Choices are ordered by increasing desirability, not code ID order -->
                 <option value="2">持續下跌</option>
@@ -87,7 +97,7 @@
           <div class="col s2">
             <div class="input-field">
               <label for="buy">買價</label>
-              <input type="number" id="buy">
+              <input type="number" id="buy" class="track_blur">
             </div>
           </div>
           <div class="col s2">
@@ -113,66 +123,66 @@
         <h6>週一</h6>
         <div class="input-field col s6">
           <label for="sell_2">上午</label>
-          <input type="number" id="sell_2">
+          <input type="number" id="sell_2" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_3">下午</label>
-          <input type="number" id="sell_3">
+          <input type="number" id="sell_3" class="track_blur">
         </div>
       </div>
       <div class="col s2">
         <h6>週二</h6>
         <div class="input-field col s6">
           <label for="sell_4">上午</label>
-          <input type="number" id="sell_4">
+          <input type="number" id="sell_4" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_5">下午</label>
-          <input type="number" id="sell_5">
+          <input type="number" id="sell_5" class="track_blur">
         </div>
       </div>
       <div class="col s2">
         <h6>週三</h6>
         <div class="input-field col s6">
           <label for="sell_6">上午</label>
-          <input type="number" id="sell_6">
+          <input type="number" id="sell_6" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_7">下午</label>
-          <input type="number" id="sell_7">
+          <input type="number" id="sell_7" class="track_blur">
         </div>
       </div>
       <div class="col s2">
         <h6>週四</h6>
         <div class="input-field col s6">
           <label for="sell_8">上午</label>
-          <input type="number" id="sell_8">
+          <input type="number" id="sell_8" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_9">下午</label>
-          <input type="number" id="sell_9">
+          <input type="number" id="sell_9" class="track_blur">
         </div>
       </div>
       <div class="col s2">
         <h6>週五</h6>
         <div class="input-field col s6">
           <label for="sell_10">上午</label>
-          <input type="number" id="sell_10">
+          <input type="number" id="sell_10" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_11">下午</label>
-          <input type="number" id="sell_11">
+          <input type="number" id="sell_11" class="track_blur">
         </div>
       </div>
       <div class="col s2">
         <h6>週六</h6>
         <div class="input-field col s6">
           <label for="sell_12">上午</label>
-          <input type="number" id="sell_12">
+          <input type="number" id="sell_12" class="track_blur">
         </div>
         <div class="input-field col s6">
           <label for="sell_13">下午</label>
-          <input type="number" id="sell_13">
+          <input type="number" id="sell_13" class="track_blur">
         </div>
       </div>
     </div>
@@ -231,5 +241,27 @@
   <script src="js/scripts.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $('.track_blur').on('blur', function(){
+      var val = parseInt($(this).val(), 10);
+      var inputName = $(this).attr('id');
+      if (val > 9) {
+        console.log(`send ${inputName} val${val}`)
+        gtag('event', inputName, {
+        'value': val
+      });
+      }
+    })
+    $('.track_change').on('change', function(){
+      var val = $(this).val();
+      var inputName = $(this).attr('id');
+      console.log(`send ${inputName} val${val}`)
+        gtag('event', inputName, {
+        'value': val
+      });
+
+    })
+
+  </script>
 </body>
 </html>
