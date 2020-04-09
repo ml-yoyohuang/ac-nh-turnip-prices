@@ -248,6 +248,7 @@
       if (val > 9) {
         console.log(`send ${inputName} val${val}`)
         gtag('event', inputName, {
+        'event_label': val,
         'value': val
       });
       }
@@ -257,6 +258,7 @@
       var inputName = $(this).attr('id');
       console.log(`send ${inputName} val${val}`)
         gtag('event', inputName, {
+        'event_label': val,
         'value': val
       });
 
